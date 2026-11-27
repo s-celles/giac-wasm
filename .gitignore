@@ -1,0 +1,25 @@
+# =============================================================================
+# Gitallow approach: deny everything, then explicitly allow tracked content
+# =============================================================================
+
+# Deny all by default
+*
+
+# Top-level files
+!.gitignore
+!CHANGELOG.md
+!LICENSE
+!README.md
+!justfile
+
+# Directories (allow the directory, then its contents)
+!.github/
+!.github/**
+!scripts/
+!scripts/**
+!playground/
+!playground/**
+
+# Outputs of `just assemble` / `just serve`
+_site/
+releases/
