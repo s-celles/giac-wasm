@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Before the first giac-wasm release, the playground said so only in small
+  grey text, left Evaluate disabled without explanation and showed an empty
+  snippet. It now shows a notice saying where releases come from, and the
+  snippet with `<version>` in place of a version.
+
 ### Added
 - GitHub Pages site, <https://s-celles.github.io/giac-wasm/>: every giac-wasm
   release of JuliaGiac/giac (tags `giac-wasm-vX.Y.Z`), its zip checked against
