@@ -140,7 +140,8 @@ for (const example of EXAMPLES) {
 }
 
 function updateSnippet(version) {
-  const base = new URL(`${version}/src/index.mjs`, location.href).href;
+  // `new URL` would percent-encode the placeholder "<version>"
+  const base = `${new URL('.', location.href).href}${version}/src/index.mjs`;
   $('snippet').textContent =
 `<script type="module">
   import { loadGiac } from '${base}';
@@ -151,7 +152,10 @@ function updateSnippet(version) {
 
 const { latest, versions } = await fetch('versions.json').then((r) => r.json());
 if (!latest) {
-  setStatus('No giac-wasm release yet.');
+  setStatus('No release yet');
+  $('notice').hidden = false;
+  versionSelect.disabled = true;
+  updateSnippet('<version>');
 } else {
   for (const v of versions) {
     const option = document.createElement('option');
