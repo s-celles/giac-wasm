@@ -1,0 +1,59 @@
+# Publishes https://s-celles.github.io/giac-wasm/: the playground and every
+# giac-wasm release of JuliaGiac/giac (tags giac-wasm-vX.Y.Z), unzipped into
+# its version folder, the newest also as latest/.
+#
+# A release of JuliaGiac/giac cannot trigger this workflow without a token
+# of this repository there, so it also runs every day; run it by hand
+# (Actions > Pages > Run workflow) to publish a release at once.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Download the giac-wasm releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/fetch-releases.sh JuliaGiac/giac releases
+
+      - name: Assemble the site
+        run: scripts/assemble.sh releases _site
+
+      - if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v6
+
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>giac-wasm playground</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <header>
+    <h1>giac-wasm</h1>
+    <p>
+      <a href="https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac.html">Giac</a>,
+      the computer algebra system of Xcas, compiled to WebAssembly and running in
+      your browser. Nothing is sent to a server.
+    </p>
+  </header>
+
+  <main>
+    <form id="form">
+      <label for="input">Giac input <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to evaluate</label>
+      <textarea id="input" rows="3" spellcheck="false" autocomplete="off">factor(x^4-1)</textarea>
+      <div class="controls">
+        <button type="submit" id="run" disabled>Evaluate</button>
+        <button type="button" id="stop" disabled>Stop</button>
+        <label>Version <select id="version"></select></label>
+        <span id="status" role="status">Loading…</span>
+      </div>
+      <div class="examples" id="examples"></div>
+    </form>
+    <ol id="history" reversed></ol>
+  </main>
+
+  <section id="use">
+    <h2>Use it in your page</h2>
+    <pre><code id="snippet"></code></pre>
+    <p>
+      Every release is served here with CORS, by version
+      (<a href="versions.json">versions.json</a>). The package is also on GitHub
+      Releases of <a href="https://github.com/JuliaGiac/giac/releases">JuliaGiac/giac</a>
+      (tags <code>giac-wasm-v*</code>), installable with
+      <code>npm install &lt;tarball URL&gt;</code>. Sources and documentation:
+      <a href="https://github.com/JuliaGiac/giac/tree/dev/npm">giac/npm</a>.
+    </p>
+  </section>
+
+  <footer>
+    Giac is © Bernard Parisse and Renée De Graeve, Institut Fourier, Université
+    Grenoble Alpes, under the GNU GPL, version 3 or later.
+    <a href="https://github.com/s-celles/giac-wasm">Source of this page</a>.
+  </footer>
+</body>
+</html>
