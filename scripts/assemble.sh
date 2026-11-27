@@ -32,7 +32,7 @@ if [ "${#versions[@]}" -gt 0 ]; then
   cp -r "$OUT/$latest" "$OUT/latest"
 fi
 
-# {"latest": "0.2.0", "versions": ["0.2.0", "0.1.0"]}, newest first
+# {"latest": "200.100.1", "versions": ["200.100.1", "200.100.0"]}, newest first
 {
   printf '{"latest": %s, "versions": [' "$( [ -n "$latest" ] && printf '"%s"' "$latest" || printf 'null')"
   if [ "${#versions[@]}" -gt 0 ]; then

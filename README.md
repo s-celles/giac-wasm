@@ -16,13 +16,15 @@ Every release is served by version, with CORS and `giac.wasm` as
 
 ```html
 <script type="module">
-  import { loadGiac } from 'https://s-celles.github.io/giac-wasm/0.1.0/src/index.mjs';
+  import { loadGiac } from 'https://s-celles.github.io/giac-wasm/200.100.0/src/index.mjs';
   const giac = await loadGiac();
   console.log(giac.eval('factor(x^4-1)'));   // (x-1)*(x+1)*(x^2+1)
 </script>
 ```
 
-`latest/` is the newest release, and `versions.json` lists them all. The API
+A version is giac-wasm's: X00.Y00.Z00 for Giac X.Y.Z (200.100.0 is Giac
+2.1.0), the last two digits counting rebuilds of the same Giac. `latest/` is
+the newest release, and `versions.json` lists them all. The API
 is documented in the package's
 [README](https://github.com/JuliaGiac/giac/blob/dev/npm/README.md). For a
 page that should not change under it, import a version, not `latest/`.

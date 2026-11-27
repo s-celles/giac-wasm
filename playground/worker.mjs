@@ -1,7 +1,7 @@
 // Giac in a Web Worker: an evaluation does not block the page, and the page
 // can stop one that runs too long by terminating the worker.
 //
-// The version comes from the worker's URL (worker.mjs?v=0.1.0); only a
+// The version comes from the worker's URL (worker.mjs?v=200.100.0); only a
 // version folder name is accepted.
 
 const requested = new URL(self.location.href).searchParams.get('v') ?? 'latest';
